@@ -1,0 +1,36 @@
+version: "3.8"
+services:
+
+  kibana:
+    image: kibana:7.9.1
+    container_name: kibana
+    restart: always
+    volumes:
+      - ./ConfFiles/kibana.yml:/usr/share/kibana/config/kibana.yml
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elst
+
+  elst:
+    image: elasticsearch:7.9.1
+    container_name: elst
+    restart: always
+    volumes:
+      - ./ConfFiles/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    ports:
+      - "9200:9200"
+
+  log:
+    image: logstash:7.9.1
+    container_name: log
+    restart: always
+    volumes:
+      - ./ConfFiles/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./ConfFiles/pipeline:/usr/share/logstash/pipeline
+    ports:
+      - "5000:5000"
+      - "9600:9600"
+    depends_on:
+      - kibana
+      - elst
