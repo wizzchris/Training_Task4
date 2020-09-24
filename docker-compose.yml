@@ -14,12 +14,15 @@ services:
 
   elst:
     image: elasticsearch:7.9.1
-    container_name: elst
+    container_name: elasticsearch
     restart: always
     volumes:
       - ./ConfFiles/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     ports:
-      - "9200:9200"
+      - "9200:9200/tcp"
+      - "9300:9300/tcp"
+      - "9200:9200/udp"
+      - "9300:9300/udp"
 
   log:
     image: logstash:7.9.1
@@ -29,7 +32,8 @@ services:
       - ./ConfFiles/logstash.yml:/usr/share/logstash/config/logstash.yml
       - ./ConfFiles/pipeline:/usr/share/logstash/pipeline
     ports:
-      - "5000:5000"
+      - "5000:5000/tcp"
+      - "5000:5000/udp"
       - "9600:9600"
     depends_on:
       - kibana
