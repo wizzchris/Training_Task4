@@ -14,6 +14,8 @@ services:
       - "5601:5601"
     depends_on:
       - elst
+    networks:
+      - elk
 
   elst:
     image: elasticsearch:7.9.1
@@ -29,6 +31,10 @@ services:
       - "9300:9300/tcp"
       - "9200:9200/udp"
       - "9300:9300/udp"
+    environment:
+      ES_JAVA_OPTS: "-Xmx2048m -Xms2048m"
+    networks:
+      - elk
 
   log:
     image: logstash:7.9.1
@@ -50,3 +56,9 @@ services:
     depends_on:
       - kibana
       - elst
+    networks:
+      - elk
+
+networks:
+  elk:
+    driver: bridge

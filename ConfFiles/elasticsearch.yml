@@ -4,6 +4,4 @@ path.logs: /usr/share/elasticsearch/logs
 node.name:    "elasticsearch"
 cluster.name: "docker-cluster"
 network.host: 0.0.0.0
-cluster.initial_master_nodes: ["elasticsearch"]
-discovery.seed_hosts:
-  - "elasticsearch"
+discovery.type: single-node
