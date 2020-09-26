@@ -1,8 +1,13 @@
 filebeat.inputs:
 - type: log
-  enabled: false
+  enabled: true
   paths:
     - /var/log/*.log
+- type: syslog
+  enabled: true
+  paths:
+    - /var/log/secure
+    - /var/log/messages
 
 filebeat.modules:
 - module: nginx
