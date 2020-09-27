@@ -5,23 +5,23 @@ filebeat.inputs:
     - /var/log/*.log
 - type: syslog
   enabled: true
-  paths:
-    - /var/log/secure
-    - /var/log/messages
+  protocol.tcp:
+    host: "localhost:9000"
 
 filebeat.modules:
 - module: nginx
+  hosts: ["127.0.0.1"]
   enabled: true
+
 - module: system
   enabled: true
 
-setup.template.settings:
-  index.number_of_shards: 1
 
 setup.dashboards.enabled: true
 
-setup.kibana:
-  host: "192.168.0.87:5601"
+setup.kibana.host: "192.168.0.87:5601"
+setup.kibana.username: elastic
+setup.kibana.password: changeme
 
 #output.elasticsearch:
  # hosts: ["localhost:9200"]

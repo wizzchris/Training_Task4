@@ -13,15 +13,12 @@ metricbeat.modules:
 
 timeseries.enabled: true
 
-setup.template.settings:
-- index.number_of_shards: 1
-- index.codec: best_compression
-
 setup.dashboards.enabled: true
 setup.dashboards.retry.enabled: true
 
 setup.kibana.host: "192.168.0.87:5601"
-
+setup.kibana.username: elastic
+setup.kibana.password: changeme
 #output.elasticsearch:
 #  hosts: ["192.168.0.87:9200"]
 
