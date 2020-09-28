@@ -3,23 +3,19 @@ filebeat.inputs:
   enabled: true
   paths:
     - /var/log/*.log
-- type: syslog
-  enabled: true
-  protocol.tcp:
-    host: "localhost:9000"
 
 filebeat.modules:
 - module: nginx
-  hosts: ["127.0.0.1"]
   enabled: true
 
 - module: system
   enabled: true
 
+- module: logstash
+  enabled: true
 
 setup.dashboards.enabled: true
-
-setup.kibana.host: "192.168.0.87:5601"
+setup.kibana.host: "192.168.0.89:5601"
 setup.kibana.username: elastic
 setup.kibana.password: changeme
 
@@ -27,5 +23,5 @@ setup.kibana.password: changeme
  # hosts: ["localhost:9200"]
 
 output.logstash:
-  hosts: ["192.168.0.87:5044"]
+  hosts: ["192.168.0.89:5044"]
   enabled: true

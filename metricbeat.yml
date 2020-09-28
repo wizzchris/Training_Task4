@@ -11,17 +11,23 @@ metricbeat.modules:
 - module: system
   enabled: true
 
+- module: elasticsearch
+  enabled: true
+
+- module: logstash
+  enabled: true
+
 timeseries.enabled: true
 
 setup.dashboards.enabled: true
 setup.dashboards.retry.enabled: true
 
-setup.kibana.host: "192.168.0.87:5601"
+setup.kibana.host: "192.168.0.89:5601"
 setup.kibana.username: elastic
 setup.kibana.password: changeme
 #output.elasticsearch:
 #  hosts: ["192.168.0.87:9200"]
 
 output.logstash:
-  hosts: ["192.168.0.87:5044"]
+  hosts: ["192.168.0.89:5044"]
   enabled: true
