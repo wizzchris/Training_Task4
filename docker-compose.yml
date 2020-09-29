@@ -39,7 +39,7 @@ services:
 
   log:
     build:
-      context: logstashdocker/dockerfile
+      context: logstashdocker/
     container_name: log
     restart: always
     volumes:
