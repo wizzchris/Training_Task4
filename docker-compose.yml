@@ -38,7 +38,8 @@ services:
       - elk
 
   log:
-    image: logstash:7.9.1
+    build:
+      context: logstashdocker/dockerfile
     container_name: log
     restart: always
     volumes:
